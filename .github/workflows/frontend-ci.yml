@@ -1,0 +1,51 @@
+name: My first Github Actions Workflow
+
+#On Push
+on:
+  push:
+    branches: 
+      - main
+
+#PR
+  pull_request:
+    branches:
+      - main
+
+#Manual
+  workflow_dispatch:
+
+
+#on: 
+ # schedule:
+  #  - cron:"0 * * * *"
+
+jobs:
+  frontend:
+    name: Install and Build React App
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download repository code
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      # Setup Node.js
+      - name: Nodejs
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Check code quality
+      - name: Check code quality
+        run: npm run lint
+
+      # Build React application
+      - name: Build React application
+        run: npm run build
+
