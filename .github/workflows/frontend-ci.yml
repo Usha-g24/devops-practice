@@ -20,7 +20,7 @@ on:
   #  - cron:"0 * * * *"
 
 jobs:
-  frontend:
+  build:
     name: Install and Build React App
     runs-on: ubuntu-latest
 
